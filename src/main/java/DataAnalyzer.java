@@ -1,26 +1,26 @@
 import java.util.List;
-import model.Record;
+import model.Line;
 import service.FileService;
+import service.LineService;
 import service.ParserService;
-import service.RecordService;
 
 public class DataAnalyzer {
     private final FileService fileService;
     private final ParserService parserService;
-    private final RecordService recordService;
+    private final LineService lineService;
 
     public DataAnalyzer(FileService fileService,
                         ParserService parserService,
-                        RecordService recordService) {
+                        LineService lineService) {
         this.fileService = fileService;
         this.parserService = parserService;
-        this.recordService = recordService;
+        this.lineService = lineService;
     }
 
     public void evaluateData(String pathToFileWithInputData, String pathToDirectoryWithOutputData) {
-        List<String> lines = fileService.readFromFile(pathToFileWithInputData);
-        List<Record> records = parserService.parseLines(lines);
-        List<String> data = recordService.getListOfAverageTime(records);
-        fileService.writeToFile(pathToDirectoryWithOutputData, data);
+        List<String> inputData = fileService.readFromFile(pathToFileWithInputData);
+        List<Line> lines = parserService.parseLines(inputData);
+        List<String> averageTimes = lineService.getAverageTimes(lines);
+        fileService.writeToFile(pathToDirectoryWithOutputData, averageTimes);
     }
 }

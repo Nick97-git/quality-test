@@ -1,9 +1,9 @@
 package service;
 
 import java.util.List;
-import model.Record;
+import model.Line;
 
 public interface ParserService {
 
-    List<Record> parseLines(List<String> lines);
+    List<Line> parseLines(List<String> inputData);
 }

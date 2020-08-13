@@ -11,21 +11,24 @@ import service.impl.FileServiceImpl;
 
 public class FileServiceTest {
     private static final String DIRECTORY_PATH = "src/test/resources/output";
+    private static final String PATH_TO_NON_EXISTENT_FILE = "src/test/resources/fil.txt";
+    private static final String PATH_TO_TEST_FILE = "src/test/resources/testFile.txt";
+    private static final String OUTPUT_FILE_NAME = "/output.txt";
     private final FileService fileService = new FileServiceImpl();
-    private final List<String> data = List.of("1", "2", "3");
+    private final List<String> inputData = List.of("1", "2", "3");
 
     @Test
     public void isReadFromFileOk() {
-        List<String> lines = fileService.readFromFile("src/test/resources/testFile.txt");
+        List<String> inputData = fileService.readFromFile(PATH_TO_TEST_FILE);
         String expected = "7";
-        String actual = lines.get(0);
+        String actual = inputData.get(0);
         Assert.assertEquals(expected, actual);
-        Assert.assertEquals(8, lines.size());
+        Assert.assertEquals(8, inputData.size());
     }
 
     @Test(expected = RuntimeException.class)
     public void isReadFromFileNotOk() {
-        fileService.readFromFile("src/test/resources/fil.txt");
+        fileService.readFromFile(PATH_TO_NON_EXISTENT_FILE);
     }
 
     @Test(expected = NullPointerException.class)
@@ -40,15 +43,15 @@ public class FileServiceTest {
 
     @Test
     public void isWriteToFileOk() throws IOException {
-        fileService.writeToFile(DIRECTORY_PATH, data);
-        Path pathToFile = Paths.get(DIRECTORY_PATH + "/output.txt");
-        int expected = data.size();
+        fileService.writeToFile(DIRECTORY_PATH, inputData);
+        Path pathToFile = Paths.get(DIRECTORY_PATH + "/" + OUTPUT_FILE_NAME);
+        int expected = inputData.size();
         int actual = (int) Files.lines(pathToFile).count();
         Assert.assertEquals(expected, actual);
     }
 
     @Test(expected = RuntimeException.class)
     public void isWriteToFileNotOk() {
-        fileService.writeToFile("", data);
+        fileService.writeToFile("", inputData);
     }
 }

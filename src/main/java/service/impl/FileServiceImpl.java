@@ -19,16 +19,16 @@ public class FileServiceImpl implements FileService {
     public List<String> readFromFile(String path) {
         File file = new File(path);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            List<String> lines = bufferedReader.lines().collect(Collectors.toList());
+            List<String> inputData = bufferedReader.lines().collect(Collectors.toList());
             LOGGER.info("File has been read!");
-            return lines;
+            return inputData;
         } catch (IOException e) {
             throw new RuntimeException("Reading of file has been failed!", e);
         }
     }
 
     @Override
-    public void writeToFile(String directoryPath, List<String> data) {
+    public void writeToFile(String directoryPath, List<String> outputData) {
         Path pathToDirectory = Paths.get(directoryPath);
         Path pathToFile = Paths.get(directoryPath + "/" + FILE_NAME);
         try {
@@ -36,10 +36,10 @@ public class FileServiceImpl implements FileService {
                 Files.createDirectory(pathToDirectory);
                 Files.createFile(pathToFile);
             }
-            Files.write(pathToFile, String.join("\n", data).getBytes());
-            LOGGER.info("File has been successfully written!");
+            Files.write(pathToFile, String.join("\n", outputData).getBytes());
+            LOGGER.info("File has been written!");
         } catch (IOException e) {
-            throw new RuntimeException("Write to file has failed!", e);
+            throw new RuntimeException("Write to file has been failed!", e);
         }
     }
 }

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class Record {
+public class Line {
     private String type;
     private String serviceType;
     private String questionType;
@@ -13,7 +13,7 @@ public class Record {
     private LocalDate dateTo;
     private int waitingTime;
 
-    private Record() {
+    private Line() {
 
     }
 
@@ -41,16 +41,16 @@ public class Record {
         return waitingTime;
     }
 
-    public static Builder newBuilder() {
-        return new Record().new Builder();
-    }
-
     public LocalDate getDateFrom() {
         return dateFrom;
     }
 
     public Optional<LocalDate> getDateTo() {
         return Optional.ofNullable(dateTo);
+    }
+
+    public static Builder newBuilder() {
+        return new Line().new Builder();
     }
 
     public class Builder {
@@ -60,47 +60,47 @@ public class Record {
         }
 
         public Builder setType(String type) {
-            Record.this.type = type;
+            Line.this.type = type;
             return this;
         }
 
         public Builder setServiceType(String serviceType) {
-            Record.this.serviceType = serviceType;
+            Line.this.serviceType = serviceType;
             return this;
         }
 
         public Builder setQuestionType(String questionType) {
-            Record.this.questionType = questionType;
+            Line.this.questionType = questionType;
             return this;
         }
 
         public Builder setResponseType(String responseType) {
-            Record.this.responseType = responseType;
+            Line.this.responseType = responseType;
             return this;
         }
 
         public Builder setDate(LocalDate date) {
-            Record.this.date = date;
+            Line.this.date = date;
             return this;
         }
 
         public Builder setDateFrom(LocalDate dateFrom) {
-            Record.this.dateFrom = dateFrom;
+            Line.this.dateFrom = dateFrom;
             return this;
         }
 
         public Builder setDateTo(LocalDate dateTo) {
-            Record.this.dateTo = dateTo;
+            Line.this.dateTo = dateTo;
             return this;
         }
 
         public Builder setWaitingTime(int waitingTime) {
-            Record.this.waitingTime = waitingTime;
+            Line.this.waitingTime = waitingTime;
             return this;
         }
 
-        public Record build() {
-            return Record.this;
+        public Line build() {
+            return Line.this;
         }
     }
 }

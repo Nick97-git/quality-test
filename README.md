@@ -13,7 +13,7 @@
 * Maven 3.6.0
 * Maven checkstyle plugin 3.1.1
 * Log4j 1.2.17
-* JUnit4
+* JUnit 4.12
 <hr>
 
 # <a name="for-developer"></a>For developer
