@@ -13,7 +13,7 @@ public class FileServiceTest {
     private static final String DIRECTORY_PATH = "src/test/resources/output";
     private static final String PATH_TO_NON_EXISTENT_FILE = "src/test/resources/fil.txt";
     private static final String PATH_TO_TEST_FILE = "src/test/resources/testFile.txt";
-    private static final String OUTPUT_FILE_NAME = "/output.txt";
+    private static final String FILE_NAME = "output.txt";
     private final FileService fileService = new FileServiceImpl();
     private final List<String> inputData = List.of("1", "2", "3");
 
@@ -44,7 +44,7 @@ public class FileServiceTest {
     @Test
     public void isWriteToFileOk() throws IOException {
         fileService.writeToFile(DIRECTORY_PATH, inputData);
-        Path pathToFile = Paths.get(DIRECTORY_PATH + "/" + OUTPUT_FILE_NAME);
+        Path pathToFile = Paths.get(DIRECTORY_PATH + "/" + FILE_NAME);
         int expected = inputData.size();
         int actual = (int) Files.lines(pathToFile).count();
         Assert.assertEquals(expected, actual);
