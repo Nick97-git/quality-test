@@ -1,4 +1,4 @@
-# Test Task
+# QU Test Task
 <hr>
 
 # Table of Contents
@@ -22,11 +22,11 @@
 
 2. Add Java SDK 11 or above in Project Structure
 
-3. Change a path to log file in src/main/resources/log4j.properties. (Optional)
+3. Change the path to log file in src/main/resources/log4j.properties. (Optional)
 
-4. Change path to txt file with input data in src/main/java/Main.java (PATH_TO_FILE_WITH_INPUT_DATA). (Optional)
+4. Change the path to txt file with input data in src/main/java/Main.java (PATH_TO_FILE_WITH_INPUT_DATA). (Optional)
 
-5. Change path to directory where will be saved txt file with output data in src/main/java/Main.java (PATH_TO_DIRECTORY_WITH_OUTPUT_DATA) (Optional)
+5. Change the path to the directory where will be saved txt file with output data in src/main/java/Main.java (PATH_TO_DIRECTORY_WITH_OUTPUT_DATA). By default, file with output data will be created in the directory called output located in the root directory of the project. (Optional)
 
 6. Run the project.
 <hr>
